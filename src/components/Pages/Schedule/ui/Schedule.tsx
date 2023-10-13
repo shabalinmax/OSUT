@@ -51,9 +51,9 @@ const SchedulePage = () => {
                     </div>
                 }
                 <Calendar />
-                <div>
+                <div className={cls.noteInputContainer}>
                     Примечание
-                    <Input onChange={(e) => setNote(e.target.value)} className={cls.noteInput} size={'middle'} />
+                    <Input onChange={(e) => setNote(e.target.value)} size={'middle'} />
                 </div>
                 <div className={cls.buttonContainer}>
                     <Button onClick={() => sendAlert()} className={cls.submitButton}>Отправить</Button>

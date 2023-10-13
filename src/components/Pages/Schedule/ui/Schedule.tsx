@@ -58,7 +58,7 @@ const SchedulePage = () => {
                 <div className={cls.buttonContainer}>
                     <Button onClick={() => sendAlert()} className={cls.submitButton}>Отправить</Button>
                 </div>
-                <Modal open={modalVisible} destroyOnClose={true} footer={null} onCancel={() => setModalVisible(false)}>
+                <Modal open={modalVisible} destroyOnClose={false} footer={null} onCancel={() => setModalVisible(false)}>
                     <div className={cls.modalContent}>
                         <h3 className={cls.modalTitle}>
                             Занятость
@@ -72,7 +72,7 @@ const SchedulePage = () => {
                                 <div>
                                     Занятость:
                                     <ul className={cls.busyCellsList}>
-                                        {Array.from(getBusyCells(cells).entries()).map(([day, cellIds]) => {
+                                        { Array.from(getBusyCells(cells).entries()).map(([day, cellIds]) => {
                                             return (
                                                 <li key={day}>
                                                     {day}: {cellIds.join(', ')}

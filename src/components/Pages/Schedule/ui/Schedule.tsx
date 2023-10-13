@@ -12,9 +12,12 @@ const SchedulePage = () => {
     const [modalVisible, setModalVisible] = useState<boolean>(false);
     const [note, setNote] = useState<string>('');
     const [cells, setCells] = useState<ICalendarCell[]>(createCalendarData());
+    const [isErrorInInput, setIsErrorInInput] = useState<boolean>(false);
     const sendAlert = () => {
         if (employeeName.length) {
             setModalVisible(true);
+        } else {
+            setIsErrorInInput(true);
         }
     }
     const initialCells = useMemo(() => ({
@@ -32,11 +35,21 @@ const SchedulePage = () => {
                     Сотрудник
                 </h3>
                 <Input
-                    onChange={(e) => setEmployeeName(e.target.value)}
+                    onChange={(e) => {
+                        setEmployeeName(e.target.value)
+                    }}
+                    onFocus={() => setIsErrorInInput(false)}
                     className={cls.employeeInput}
                     size={'small'}
                     placeholder={'Фамилия Имя Отчество'}
+                    style={isErrorInInput ? {borderColor: 'red'} : {}}
                 />
+                {
+                    isErrorInInput &&
+                    <div>
+                        Поле не может быть пустым
+                    </div>
+                }
                 <Calendar />
                 <div>
                     Примечание
